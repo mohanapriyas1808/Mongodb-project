@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    container_name: newbackend
+    ports:
+      - "5000:5000"  # Map backend container port 5000 to host port 5001
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/my_database
+    networks:
+      - app-network
+
+  frontend:
+    build: ./mongofrontend
+    container_name: newfrontend
+    ports:
+      - "3000:3000"  # Map frontend container port 3000 to host port 3001
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27018:27017"  # Map MongoDB container port 27017 to host port 27018
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
