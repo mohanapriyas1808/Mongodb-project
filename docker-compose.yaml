@@ -4,7 +4,7 @@ services:
     build: ./backend
     container_name: newbackend
     ports:
-      - "5000:5000"  # Map backend container port 5000 to host port 5001
+      - "5000:5000"  # Map backend container port 5000 to host port 5000
     depends_on:
       - mongo
     environment:
@@ -16,7 +16,7 @@ services:
     build: ./mongofrontend
     container_name: newfrontend
     ports:
-      - "3000:3000"  # Map frontend container port 3000 to host port 3001
+      - "3000:3000"  # Map frontend container port 3000 to host port 3000
     depends_on:
       - backend
     networks:
