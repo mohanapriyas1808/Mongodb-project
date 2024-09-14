@@ -1,4 +1,4 @@
-# Use an official Node.js runtime as a parent image
+# Use an official Node.js 
 FROM node:14
 
 # Set the working directory inside the container
